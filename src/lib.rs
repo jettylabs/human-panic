@@ -144,7 +144,6 @@ pub fn print_msg<P: AsRef<Path>>(
   let mut buffer = stderr.buffer();
   buffer.set_color(ColorSpec::new().set_fg(Some(Color::Red)))?;
 
-  writeln!(&mut buffer, "Well, this is embarrassing.\n")?;
   writeln!(
     &mut buffer,
     "{} had a problem and crashed. To help us diagnose the \
@@ -169,13 +168,7 @@ pub fn print_msg<P: AsRef<Path>>(
   if !authors.is_empty() {
     writeln!(&mut buffer, "- Authors: {}", authors)?;
   }
-  writeln!(
-    &mut buffer,
-    "\nWe take privacy seriously, and do not perform any \
-     automated error collection. In order to improve the software, we rely on \
-     people to submit reports.\n"
-  )?;
-  writeln!(&mut buffer, "Thank you kindly!")?;
+  writeln!(&mut buffer, "Thank you!")?;
 
   buffer.reset()?;
 
