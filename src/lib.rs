@@ -162,12 +162,6 @@ pub fn print_msg<P: AsRef<Path>>(
     name
   )?;
 
-  if !homepage.is_empty() {
-    writeln!(&mut buffer, "- Homepage: {}", homepage)?;
-  }
-  if !authors.is_empty() {
-    writeln!(&mut buffer, "- Authors: {}", authors)?;
-  }
   writeln!(&mut buffer, "Thank you!")?;
 
   buffer.reset()?;
