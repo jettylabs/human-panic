@@ -5,12 +5,6 @@ fn release() {
   assert_cli::Assert::command(&["cargo", "run", "--release"])
     .stderr()
     .contains("custom-panic-test")
-    .stderr()
-    .contains("My Company Support")
-    .stderr()
-    .contains("support@mycompany.com")
-    .stderr()
-    .contains("support.mycompany.com")
     .fails_with(101)
     .unwrap();
 }

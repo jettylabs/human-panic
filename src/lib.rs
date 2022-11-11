@@ -86,6 +86,26 @@ pub struct Metadata {
 /// ```
 #[macro_export]
 macro_rules! setup_panic {
+  ($passthrough:expr, $meta:expr) => {
+    #[allow(unused_imports)]
+    use std::panic::{self, PanicInfo};
+    #[allow(unused_imports)]
+    use $crate::{handle_dump, print_msg, Metadata};
+
+    #[cfg(not(debug_assertions))]
+    match ::std::env::var("RUST_BACKTRACE") {
+      Err(_) => {
+        panic::set_hook(Box::new(move |info: &PanicInfo| {
+          $passthrough();
+          let file_path = handle_dump(&$meta, info);
+          print_msg(file_path, &$meta)
+            .expect("human-panic: printing error message to console failed");
+        }));
+      }
+      Ok(_) => {}
+    }
+  };
+
   ($meta:expr) => {
     #[allow(unused_imports)]
     use std::panic::{self, PanicInfo};
