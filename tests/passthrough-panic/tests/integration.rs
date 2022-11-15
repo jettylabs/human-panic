@@ -17,7 +17,7 @@ fn debug() {
     .stderr()
     .contains("OMG EVERYTHING IS ON FIRE!!!")
     .stdout()
-    .doesnt_contain("Something goes here")
+    .contains("Something goes here")
     .fails_with(101)
     .unwrap();
 }
