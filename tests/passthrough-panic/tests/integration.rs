@@ -4,7 +4,9 @@ use assert_cli;
 fn release() {
   assert_cli::Assert::command(&["cargo", "run", "--release"])
     .stderr()
-    .contains("single-panic-test")
+    .contains("passthrough-panic-test")
+    .stdout()
+    .contains("Something goes here")
     .fails_with(101)
     .unwrap();
 }
@@ -14,6 +16,8 @@ fn debug() {
   assert_cli::Assert::command(&["cargo", "run"])
     .stderr()
     .contains("OMG EVERYTHING IS ON FIRE!!!")
+    .stdout()
+    .contains("Something goes here")
     .fails_with(101)
     .unwrap();
 }

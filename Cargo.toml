@@ -6,9 +6,11 @@ repository = "https://github.com/yoshuawuyts/human-panic"
 homepage = "https://github.com/yoshuawuyts/human-panic"
 documentation = "https://docs.rs/human-panic"
 description = "Panic messages for humans"
-authors = ["Yoshua Wuyts <yoshuawuyts@gmail.com>",
-           "Pascal Hertleif <killercup@gmail.com>",
-           "Katharina Fey <kookie@spacekookie.de>"]
+authors = [
+  "Yoshua Wuyts <yoshuawuyts@gmail.com>",
+  "Pascal Hertleif <killercup@gmail.com>",
+  "Katharina Fey <kookie@spacekookie.de>",
+]
 readme = "README.md"
 edition = "2018"
 
@@ -31,4 +33,5 @@ nightly = []
 members = [
   "tests/single-panic",
   "tests/custom-panic",
+  "tests/passthrough-panic",
 ]
