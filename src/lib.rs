@@ -77,11 +77,14 @@ pub struct Metadata {
 /// ```
 /// use human_panic::setup_panic;
 ///
-/// setup_panic!(Metadata {
-///     name: env!("CARGO_PKG_NAME").into(),
-///     version: env!("CARGO_PKG_VERSION").into(),
-///     authors: "My Company Support <support@mycompany.com>".into(),
-///     homepage: "support.mycompany.com".into(),
+/// setup_panic!(|| {
+///       println!("This closure is called even when the human panic message is shown")
+///     },
+///     Metadata {
+///       name: env!("CARGO_PKG_NAME").into(),
+///       version: env!("CARGO_PKG_VERSION").into(),
+///       authors: "My Company Support <support@mycompany.com>".into(),
+///       homepage: "support.mycompany.com".into(),
 /// });
 /// ```
 #[macro_export]
@@ -200,6 +203,9 @@ pub fn print_msg<P: AsRef<Path>>(
     },
     name
   )?;
+  if !authors.is_empty() {
+    writeln!(&mut buffer, "- Contact: {}", authors)?;
+  }
 
   writeln!(&mut buffer, "Thank you!")?;
 
